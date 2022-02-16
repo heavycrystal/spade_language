@@ -1,0 +1,47 @@
+sow vraj of i64
+sow pranav⭕ of f64 
+sow input_file_name of c∞ 
+sow input_file_handle of file 
+sow 56 oranges of c32 
+sow truth of b1 
+
+
+here lies kevin
+__________
+|
+|   sow cow of i64 
+|   sow tomatoes of c∞ 
+|__________
+
+
+truth is ❌ 
+vraj is 0+3 
+pranav⭕ is        1+[3/2]×2√81      
+
+sow bastard of kevin 
+bastard→cow is 0x5d44 
+bastard→tomatoes is "red delicious"
+
+harvest until days>55
+    oranges#days is "x" 
+
+engrave "lalala" on stdout 
+
+input_file_name is gather from stdout 
+input_file_handle is unearth input_file_name ← "wb" 
+
+engrave 0b1101001 on input_file_handle 
+bury input_file_handle 
+
+⚠ This is a comment
+
+harvest from day 0 until days>=5
+    vraj-2==1 fresh?
+        vraj is vraj-1 
+    
+truth         == ⭕ fresh?
+    engrave "truth is truth " on stdout 
+rotten truth      == 78 fresh?
+    engrave "truth is a number?" on stdout 
+rotten 
+    engrave "truth is false!" on stderr 
