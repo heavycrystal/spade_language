@@ -3,6 +3,7 @@ sow pranav⭕ of f64
 sow input_file_name of c∞ 
 sow input_file_handle of file 
 sow 56 oranges of c32 
+sow fptt of f32
 sow truth of b1 
 
 
@@ -16,7 +17,8 @@ __________
 
 truth is ❌ 
 vraj is 0+3 
-pranav⭕ is        1+[3/2]×2√81      
+pranav⭕ is        1+[3/2]×2√81
+fptt is 0.192      
 
 sow bastard of kevin 
 bastard→cow is 0x5d44 
