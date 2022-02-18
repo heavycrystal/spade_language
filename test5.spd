@@ -1,0 +1,25 @@
+⚠ Functions, Structs and an error
+
+here lies node
+__________
+|
+|   sow val of i64 
+|   sow next of node 
+|__________
+
+sow ll of node
+sow displayer of node
+
+displayer → next is ll
+
+harvest [from day 1] (until day == 15) [every 1 days]
+    ll → val = day
+    ll is ll → next
+
+displayer is displayer → next
+
+harvest [from day 1] (until day == 15) [every 1 days]
+    engrave displayer → val on stdout
+    displayer is displayer → next
+
+engrave LINKED LIST COMPLETE"

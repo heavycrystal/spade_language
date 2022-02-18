@@ -14,15 +14,15 @@ def print_hex(token_id: int):
 
 def print_token(word: str, line_index: int):
     if is_integer_constant(word):
-        print(('\t'*4).join([ print_hex(129), "INT_CONSTANT", word]))
+        print(('\t'*4).join([ print_hex(129), "INT_CONSTANT", word, str(line_index)]))
     elif is_float_constant(word):
-        print(('\t'*4).join([ print_hex(130), "FP_CONSTANT", word]))
+        print(('\t'*4).join([ print_hex(130), "FP_CONSTANT", word, str(line_index)]))
     elif is_keyword(word):
-        print(('\t'*4).join([ print_hex(spade_keywords.index(word)), "SPADE_KEYWORD", word]))
+        print(('\t'*4).join([ print_hex(spade_keywords.index(word)), "SPADE_KEYWORD", word, str(line_index)]))
     elif is_valid_variable_name(word):
-        print(('\t'*4).join([ print_hex(128), "IDENTIFIER", word]))
+        print(('\t'*4).join([ print_hex(128), "IDENTIFIER", word, str(line_index)]))
     elif is_operator(word):
-        print(('\t'*4).join([ print_hex(64 + spade_operators.index(word)), "SPADE_OPERATOR", word]))
+        print(('\t'*4).join([ print_hex(64 + spade_operators.index(word)), "SPADE_OPERATOR", word, str(line_index)]))
     else:
         split_word = is_expr(word)
         for word in split_word:
@@ -62,8 +62,7 @@ def is_expr(word: str):
     return split_word
 
 input_file_lines = list(map(lambda line: line.split(), open(sys.argv[-1], "r",encoding='utf8').readlines()))
-
-print("\n\nTOKEN_ID\t\t\tTOKEN_TYPE\t\t\t\tTOKEN CONTENTS")
+print("\n\nTOKEN_ID\t\t\tTOKEN_TYPE\t\t\t\tTOKEN CONTENTS\t\tLINE NUMBER")
 
 for line_index, line in enumerate(input_file_lines):
     # handling struct enclosures as well as empty lines.
@@ -87,7 +86,7 @@ for line_index, line in enumerate(input_file_lines):
             else:
                 string_constant = string_constant + " " +  line[word_index][:-1]
                 string_constant = string_constant.strip()
-                print(('\t'*4).join([ print_hex(131), "STRING_CONSTANT", string_constant[1:] ]))
+                print(('\t'*4).join([ print_hex(131), "STRING_CONSTANT", string_constant[1:], str(line_index) ]))
         else:
             print_token(line[word_index], line_index)
         word_index = word_index + 1
