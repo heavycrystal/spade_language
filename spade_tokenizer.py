@@ -76,13 +76,15 @@ for line_index, line in enumerate(input_file_lines):
         line = line[1:]
     word_index = 0
     while word_index < len(line):
-        if line[word_index][0] == "\"":
+        if line[word_index][-1] == "\"" and line[word_index][0] != "\"":
+            parse_fail("Error parsing, (\") is an illegal character.\nLine: "+' '.join(line), line_index)
+        elif line[word_index][0] == "\"":
             string_constant =  ""
             while word_index < len(line) and line[word_index][-1] != "\"":
                 string_constant = string_constant + " " +  line[word_index]
                 word_index = word_index + 1
             if word_index == len(line):
-                parse_fail("Error parsing, string constant not terminated.")
+                parse_fail("Error parsing, string constant not terminated.\nLine: "+' '.join(line), line_index)
             else:
                 string_constant = string_constant + " " +  line[word_index][:-1]
                 string_constant = string_constant.strip()
