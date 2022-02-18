@@ -1,4 +1,4 @@
-# spade_language
+# The SPADE programming language
 A simple programming language designed for the course CS F363 Compiler Construction.
 
 Team Members are:
