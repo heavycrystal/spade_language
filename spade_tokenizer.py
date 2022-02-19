@@ -61,7 +61,7 @@ def is_expr(word: str):
     split_word = [ i for i in re.split("(>\=)|(<\=)|(>)|(<)|(\=\=)|(\+)|(-)|(×)|(÷)|(\/)|(&)|(\|)|(\^)|(√)|(\=)|(\!)|(~)|(#)|(←)|(→)|(\[)|(\])", word) if i is not None and len(i) > 0 ]
     return split_word
 
-input_file_lines = list(map(lambda line: line.split(), open(sys.argv[-1], "r",encoding='utf8').readlines()))
+input_file_lines = list(map(lambda line: line.split(), open(sys.argv[-1], "r", encoding = 'utf8').readlines()))
 
 print("\n\nTOKEN_ID\t\t\tTOKEN_TYPE\t\t\t\tTOKEN CONTENTS")
 
