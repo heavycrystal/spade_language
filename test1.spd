@@ -22,7 +22,7 @@ fptt is 0.192
 
 sow helpless of crane 
 helpless→cow is 0x5d44 
-helpless→tomatoes is "red delicious"
+helpless→tomatoes is "red \" delicious"
 
 harvest until days>55
     oranges#days is "x" 

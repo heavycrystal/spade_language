@@ -62,7 +62,6 @@ def is_expr(word: str):
     return split_word
 
 input_file_lines = list(map(lambda line: list(filter(None, re.split("\n|(\s)", line))), open(sys.argv[-1], "r", encoding = 'utf8').readlines()))
-print(input_file_lines)
 
 print("\n\nLINE_NUMBER\t\t\tTOKEN_ID\t\t\tTOKEN_TYPE\t\t\t\tTOKEN CONTENTS")
 
@@ -83,7 +82,7 @@ for line_index, line in enumerate(input_file_lines):
             parse_fail("Error parsing, (\") is an illegal character.\nLine: "+' '.join(line), line_index)
         elif line[word_index][0] == "\"":
             string_constant =  ""
-            while word_index < len(line) and line[word_index][-1] != "\"":
+            while word_index < len(line) and (line[word_index][-1] != "\"" or (len(line[word_index])>1 and line[word_index][-1]=="\"" and line[word_index][-2] == "\\")):
                 string_constant = string_constant + line[word_index]
                 word_index = word_index + 1
             if word_index == len(line):
