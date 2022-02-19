@@ -14,15 +14,15 @@ def print_hex(token_id: int):
 
 def print_token(word: str, line_index: int):
     if is_integer_constant(word):
-        print(('\t'*4).join([ print_hex(129), "INT_CONSTANT", word]))
+        print(('\t'*4).join([str(line_index+1), print_hex(129), "INT_CONSTANT", word]))
     elif is_float_constant(word):
-        print(('\t'*4).join([ print_hex(130), "FP_CONSTANT", word]))
+        print(('\t'*4).join([str(line_index+1), print_hex(130), "FP_CONSTANT", word]))
     elif is_keyword(word):
-        print(('\t'*4).join([ print_hex(spade_keywords.index(word)), "SPADE_KEYWORD", word]))
+        print(('\t'*4).join([str(line_index+1), print_hex(spade_keywords.index(word)), "SPADE_KEYWORD", word]))
     elif is_valid_variable_name(word):
-        print(('\t'*4).join([ print_hex(128), "IDENTIFIER", word]))
+        print(('\t'*4).join([str(line_index+1), print_hex(128), "IDENTIFIER", word]))
     elif is_operator(word):
-        print(('\t'*4).join([ print_hex(64 + spade_operators.index(word)), "SPADE_OPERATOR", word]))
+        print(('\t'*4).join([str(line_index+1), print_hex(64 + spade_operators.index(word)), "SPADE_OPERATOR", word]))
     else:
         split_word = is_expr(word)
         for word in split_word:
@@ -61,9 +61,10 @@ def is_expr(word: str):
     split_word = [ i for i in re.split("(>\=)|(<\=)|(>)|(<)|(\=\=)|(\+)|(-)|(×)|(÷)|(\/)|(&)|(\|)|(\^)|(√)|(\=)|(\!)|(~)|(#)|(←)|(→)|(\[)|(\])", word) if i is not None and len(i) > 0 ]
     return split_word
 
-input_file_lines = list(map(lambda line: line.split(), open(sys.argv[-1], "r", encoding = 'utf8').readlines()))
+input_file_lines = list(map(lambda line: list(filter(None, re.split("\n|(\s)", line))), open(sys.argv[-1], "r", encoding = 'utf8').readlines()))
+print(input_file_lines)
 
-print("\n\nTOKEN_ID\t\t\tTOKEN_TYPE\t\t\t\tTOKEN CONTENTS")
+print("\n\nLINE_NUMBER\t\t\tTOKEN_ID\t\t\tTOKEN_TYPE\t\t\t\tTOKEN CONTENTS")
 
 for line_index, line in enumerate(input_file_lines):
     # handling struct enclosures as well as empty lines.
@@ -75,19 +76,22 @@ for line_index, line in enumerate(input_file_lines):
         line = line[1:]
     word_index = 0
     while word_index < len(line):
+        if line[word_index] == ' ':
+            word_index = word_index + 1
+            continue
         if line[word_index][-1] == "\"" and line[word_index][0] != "\"":
             parse_fail("Error parsing, (\") is an illegal character.\nLine: "+' '.join(line), line_index)
         elif line[word_index][0] == "\"":
             string_constant =  ""
             while word_index < len(line) and line[word_index][-1] != "\"":
-                string_constant = string_constant + " " +  line[word_index]
+                string_constant = string_constant + line[word_index]
                 word_index = word_index + 1
             if word_index == len(line):
                 parse_fail("Error parsing, string constant not terminated.\nLine: "+' '.join(line), line_index)
             else:
-                string_constant = string_constant + " " +  line[word_index][:-1]
+                string_constant = string_constant + line[word_index][:-1]
                 string_constant = string_constant.strip()
-                print(('\t'*4).join([ print_hex(131), "STRING_CONSTANT", string_constant[1:] ]))
+                print(('\t'*4).join([str(line_index+1), print_hex(131), "STRING_CONSTANT", string_constant[1:] ]))
         else:
             print_token(line[word_index], line_index)
         word_index = word_index + 1

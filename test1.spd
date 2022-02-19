@@ -1,5 +1,5 @@
-sow vraj of i64
-sow pranav⭕ of f64 
+sow swill of i64
+sow alone⭕ of f64 
 sow input_file_name of c∞ 
 sow input_file_handle of file 
 sow 56 oranges of c32 
@@ -7,22 +7,22 @@ sow fptt of f32
 sow truth of b1 
 
 
-here lies kevin
-__________
+here lies crane
+__________        
 |
 |   sow cow of i64 
 |   sow tomatoes of c∞ 
-|__________
+|__________   
 
 
 truth is ❌ 
-vraj is 0+3 
-pranav⭕ is        1+[3/2]×2√81
+swill is 0+3 
+alone⭕ is        1+[3/2]×2√81
 fptt is 0.192      
 
-sow bastard of kevin 
-bastard→cow is 0x5d44 
-bastard→tomatoes is "red delicious"
+sow helpless of crane 
+helpless→cow is 0x5d44 
+helpless→tomatoes is "red delicious"
 
 harvest until days>55
     oranges#days is "x" 
@@ -38,11 +38,11 @@ bury input_file_handle
 ⚠ This is a comment
 
 harvest from day 0 until days>=5
-    vraj-2==1 fresh?
-        vraj is vraj-1 
+    swill-2==1 fresh?
+        swill is swill-1 
     
 truth         == ⭕ fresh?
-    engrave "truth is truth " on stdout 
+    engrave "truth is                                            truth " on stdout 
 rotten truth      == 78 fresh?
     engrave "truth is a number?" on stdout 
 rotten 
