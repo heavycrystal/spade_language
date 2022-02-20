@@ -1,0 +1,10 @@
+⚠ Program to print something
+
+sow variable of i64
+variable is 24
+
+harvest [from day 1] (until day == 5) [every 1 days]
+    day % 2 == 1 fresh ?
+        engrave variable on stdout
+    rotten
+        engrave Wrong" on stdout
