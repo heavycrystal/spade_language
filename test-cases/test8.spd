@@ -30,7 +30,7 @@ solve with [root]
     is_right is ❌
 
     harvest eternally
-        harvest from p = 0 until p >= plen every 1 p
+        harvest from p is 0 until p ≥ plen every 1 p
             parents#p->left fresh?
                 children#c is parents#p->left
                 c is c + 1
@@ -38,19 +38,19 @@ solve with [root]
                 children#c is parents#p->right
                 c is c + 1
 
-        c == 0 fresh?
+        c = 0 fresh?
             kill
 
         is_right fresh?
-            harvest from i = 0 until i >= c every 1 i
+            harvest from i is 0 until i ≥ c every 1 i
                 solution#s is children#c->val
                 s is s + 1
         rotten
-            harvest from i = c - 1 until i < 0 every 1 i
+            harvest from i is c - 1 until i < 0 every 1 i
                 solution#s is children#c->val
                 s is s + 1
         
-        harvest from i = 0 until i >= c every 1 i
+        harvest from i is 0 until i ≥ c every 1 i
             parents#i is children#i
         plen is c
 

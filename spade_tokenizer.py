@@ -1,7 +1,7 @@
 import sys
 import re
 
-spade_operators = [ "+", "-", "×", "÷", "/", "&", "|", "^", "√", "=", "!", "~", "#", ">", "<", "[", "]", "←", "→", "⚠", ">=", "<=", "==", ",", "&&", "||"]
+spade_operators = [ "+", "-", "×", "÷", "/", "&", "|", "^", "√", "=", "!", "~", "#", ">", "<", "[", "]", "←", "→", "⚠", "≥", "≤", "=", ",", "&&", "||"]
 spade_keywords = [ "sow", "with", "reap", "of", "here", "lies", "is", "harvest", "from", "until", "eternally", "every", "⚠", "fresh?", "rotten", "kill", "skip", "supply", "unearth", "bury", "engrave", "on", "stdout", "stderr", "i64", "u64", "f64", "i32", "u32", "f32", "b8", "b1", "c32", "c∞", "file", "❌", "⭕" ]
 
 def parse_fail(error: str, line_index: int):
@@ -58,7 +58,7 @@ def is_operator(word: str):
     return False
 
 def is_expr(word: str):
-    split_word = list(filter(None, re.split("(>\=)|(<\=)|(>)|(<)|(\=\=)|(&&)|(\|\|)|(\+)|(-)|(×)|(÷)|(\/)|(&)|(\|)|(\^)|(√)|(\=)|(\!)|(~)|(#)|(←)|(→)|(\[)|(\])|(,)", word)))
+    split_word = list(filter(None, re.split("(≤)|(≥)|(>)|(<)|(&&)|(\|\|)|(\+)|(-)|(×)|(÷)|(\/)|(&)|(\|)|(\^)|(√)|(\=)|(≠)|(\!)|(~)|(#)|(←)|(→)|(\[)|(\])|(,)", word)))
     return split_word
 
 input_file_lines = list(map(lambda line: list(filter(None, re.split("\n|([ \t]+)", line))), open(sys.argv[-1], "r", encoding = 'utf8').readlines()))

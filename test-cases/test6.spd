@@ -2,8 +2,8 @@
 
 bubbleSort with [i32# numbers, i32 n]
 
-    harvest from i = 0 until i == n - 1 every 1 i
-        harvest from j = 0 until j == n - i - 1 every 1 j
+    harvest from i is 0 until i = n - 1 every 1 i
+        harvest from j is 0 until j = n - i - 1 every 1 j
 
             sow next of i32
             next is j + 1
@@ -18,10 +18,10 @@ sow len on i32
 len is 100
 
 sow len apples of i32
-harvest from i = 0 until i >= len every 1 i
+harvest from i is 0 until i ≥ len every 1 i
     apples#i is len - i
 
-harvest from i = 0 until i >= len every 1 i
+harvest from i is 0 until i ≥ len every 1 i
     engrave apples#i on stdout
     engrave " " on stdout
 
@@ -29,7 +29,7 @@ engrave "\n" on stdout
 
 reap bubbleSort with [apples, len]
 
-harvest from i = 0 until i >= len every 1 i
+harvest from i is 0 until i ≥ len every 1 i
     engrave apples#i on stdout
     engrave " " on stdout
 

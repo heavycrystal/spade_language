@@ -19,15 +19,15 @@ dfs with [i32 start, array# adj, b1# visited, i32# values, i32 size]
 
     visited#start is ⭕
 
-    harvest from i = 0 until i >= size every 1 i
-        adj#start->arr#i == 1 && visited#i != 1 fresh?
+    harvest from i is 0 until i ≥ size every 1 i
+        adj#start->arr#i is 1 && visited#i ≠ 1 fresh?
             reap dfs with [i, adj, visited, values, size]
 
 ⚠ Make the adjacency matrix and initialize all edges to ❌
 sow n adj of array
 
-harvest from i = 0 until i >= n every 1 i
-    harvest from j = 0 until j >= n every 1 j
+harvest from i is 0 until i ≥ n every 1 i
+    harvest from j is 0 until j ≥ n every 1 j
         adj#i->arr#j is ❌
 
 ⚠ Add edges
@@ -38,12 +38,12 @@ adj#6->arr#10 is ⭕
 
 ⚠ Initialize visited array to all ❌
 sow n visited of b1
-harvest from i = 0 until i >= n every 1 i
+harvest from i is 0 until i ≥ n every 1 i
     visited#i is ❌
 
 ⚠ Value for each vertex. Here, it is just vertex#²
 sow n values of i32
-harvest from i = 0 until i >= n every 1 i
+harvest from i is 0 until i ≥ n every 1 i
     values#i is i²
 
 reap dfs with [0, adj, visited, values, n]
