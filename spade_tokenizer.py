@@ -1,7 +1,7 @@
 import sys
 import re
 
-spade_operators = [ "+", "-", "×", "÷", "/", "&", "|", "^", "√", "=", "!", "~", "#", ">", "<", "[", "]", "←", "→", "⚠", "≥", "≤", "=", ",", "&&", "||"]
+spade_operators = [ "+", "-", "×", "÷", "/", "&", "|", "^", "√", "=", "!", "~", "#", ">", "<", "[", "]", "←", "→", "⚠", "≥", "≤", "≠", ",", "&&", "||"]
 spade_keywords = [ "sow", "with", "reap", "of", "here", "lies", "is", "harvest", "from", "until", "eternally", "every", "⚠", "fresh?", "rotten", "kill", "skip", "supply", "unearth", "bury", "engrave", "on", "stdout", "stderr", "i64", "u64", "f64", "i32", "u32", "f32", "b8", "b1", "c32", "c∞", "file", "❌", "⭕" ]
 
 def parse_fail(error: str, line_index: int):
