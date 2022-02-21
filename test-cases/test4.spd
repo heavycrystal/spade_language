@@ -2,8 +2,8 @@
 
 sow 12 apples of c∞
 
-harvest [from day 1] (until day == 12) [every 1 days]
+harvest from day = 1 until day == 12 every 1 day
     gather apples#day from stdin
 
-harvest [from day 1] (until day == 12) [every 1 days]
+harvest from day = 1 until day == 12 every 1 day
     engrave apples#day to stdout

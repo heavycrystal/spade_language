@@ -12,13 +12,13 @@ sow displayer of node
 
 displayer → next is ll
 
-harvest [from day 1] (until day == 15) [every 1 days]
+harvest from day = 1 until day == 15 every 1 day
     ll → val = day
     ll is ll → next
 
 displayer is displayer → next
 
-harvest [from day 1] (until day == 15) [every 1 days]
+harvest from day = 1 until day == 15 every 1 day
     engrave displayer → val on stdout
     displayer is displayer → next
 

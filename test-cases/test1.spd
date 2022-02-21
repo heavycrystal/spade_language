@@ -37,7 +37,7 @@ bury input_file_handle
 
 ⚠ This is a comment
 
-harvest from day 0 until days>=5
+harvest from day = 0 until day >= 5 every 1 day
     swill-2==1 fresh?
         swill is swill-1 
     
