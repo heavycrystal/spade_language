@@ -29,7 +29,7 @@ harvest until days>55
 
 engrave "lalala" on stdout 
 
-input_file_name is gather from stdout 
+input_file_name is gather from stdin 
 input_file_handle is unearth input_file_name ← "wb" 
 
 engrave 0b1101001 on input_file_handle 

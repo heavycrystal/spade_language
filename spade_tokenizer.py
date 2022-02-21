@@ -3,6 +3,8 @@ import re
 
 spade_operators = [ "+", "-", "×", "÷", "/", "&", "|", "^", "√", "=", "!", "~", "#", ">", "<", "[", "]", "←", "→", "⚠", "≥", "≤", "≠", ",", "&&", "||"]
 spade_keywords = [ "sow", "with", "reap", "of", "here", "lies", "is", "harvest", "from", "until", "eternally", "every", "⚠", "fresh?", "rotten", "kill", "skip", "supply", "unearth", "bury", "engrave", "on", "stdout", "stderr", "i64", "u64", "f64", "i32", "u32", "f32", "b8", "b1", "c32", "c∞", "file", "❌", "⭕" ]
+superscript_numbers = ["⁰","¹","²","³","⁴","⁵","⁶","⁷","⁸","⁹"]
+superscript_map = {"⁰":"0","¹":"1","²":"2","³":"3","⁴":"4","⁵":"5","⁶":"6","⁷":"7","⁸":"8","⁹":"9"}
 
 def parse_fail(error: str, line_index: int):
     print(error)
@@ -12,9 +14,15 @@ def parse_fail(error: str, line_index: int):
 def print_hex(token_id: int):
     return str.format("0x{:02x}", token_id)
 
+def desuperscriptify(word: str):
+    word_list  = []
+    for char in word:
+        word_list.append(superscript_map.get(char, char))
+    return ''.join(word_list)
+
 def print_token(word: str, line_index: int):
     if is_integer_constant(word):
-        print(('\t' * 4).join([str(line_index + 1), print_hex(129), "INT_CONSTANT", word]))
+        print(('\t' * 4).join([str(line_index + 1), print_hex(129), "INT_CONSTANT", desuperscriptify(word)]))
     elif is_float_constant(word):
         print(('\t' * 4).join([str(line_index + 1), print_hex(130), "FP_CONSTANT", word]))
     elif is_keyword(word):
@@ -32,6 +40,8 @@ def is_integer_constant(word: str):
     try:
         int(word, base = 0)
     except ValueError:
+        if len([superscript for superscript in list(word) if superscript in superscript_numbers])==len(list(word)):
+            return True
         return False
     return True
 
@@ -48,7 +58,7 @@ def is_keyword(word: str):
     return False
 
 def is_valid_variable_name(word: str):
-    if len([ character for character in list(word) if character in spade_operators ]) > 0:
+    if len([ character for character in list(word) if character in (spade_operators+superscript_numbers) ]) > 0:
         return False
     return True
 
@@ -57,8 +67,9 @@ def is_operator(word: str):
         return True
     return False
 
-def is_expr(word: str):
-    split_word = list(filter(None, re.split("(≤)|(≥)|(>)|(<)|(&&)|(\|\|)|(\+)|(-)|(×)|(÷)|(\/)|(&)|(\|)|(\^)|(√)|(\=)|(≠)|(\!)|(~)|(#)|(←)|(→)|(\[)|(\])|(,)", word)))
+def is_expr(word: str):  
+    split_word = list(filter(None, re.split("([\u2070\u00b9\u00b2\u00b3\u2074-\u2079]+)|(≤)|(≥)|(>)|(<)|(&&)|(\|\|)|(\+)|(-)|(×)|(÷)|(\/)|(&)|(\|)|(\^)|(√)|(\=)|(≠)|(\!)|(~)|(#)|(←)|(→)|(\[)|(\])|(,)", word)))
+    #print(split_word)
     return split_word
 
 input_file_lines = list(map(lambda line: list(filter(None, re.split("\n|([ \t]+)", line))), open(sys.argv[-1], "r", encoding = 'utf8').readlines()))
