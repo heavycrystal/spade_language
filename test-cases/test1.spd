@@ -41,7 +41,7 @@ harvest from day = 0 until day ≥ 5 every 1 day
     swill-2=1 fresh?
         swill is swill-1 
 
-1=2 && 1 || 3 fresh?
+1=2 && 1 || [3%1] fresh?
     engrave "Ye" on stdout
     
 truth         = ⭕ fresh?
