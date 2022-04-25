@@ -1,0 +1,60 @@
+⚠⚠⚠ This problem: https://binarysearch.com/problems/Level-Order-Alternating ⚠⚠⚠
+
+sow n of i32
+n is 100000
+
+here lies Tree
+__________
+|
+|   sow val of i32
+|   sow left of Tree
+|   sow right of Tree
+|__________
+
+solve with [root]
+    sow n parents of Tree
+    sow plen of i32
+    parents#0 is root
+    plen is 1
+
+    sow n children of Tree
+    sow c of i32
+    c is 0
+
+    sow n solution of Tree
+    solution#0 is root->val
+    sow s of i32
+    s is 1
+
+    sow is_right of b1
+    is_right is ❌
+
+    harvest eternally
+        harvest from p is 0 until p ≥ plen every 1 p
+            parents#p->left fresh?
+                children#c is parents#p->left
+                c is c + 1
+            parents#p->right fresh?
+                children#c is parents#p->right
+                c is c + 1
+
+        c = 0 fresh?
+            kill
+
+        is_right fresh?
+            harvest from i is 0 until i ≥ c every 1 i
+                solution#s is children#c->val
+                s is s + 1
+        rotten
+            harvest from i is c - 1 until i < 0 every 1 i
+                solution#s is children#c->val
+                s is s + 1
+        
+        harvest from i is 0 until i ≥ c every 1 i
+            parents#i is children#i
+        plen is c
+
+        c is 0
+        is_right is !is_right
+
+    supply solution

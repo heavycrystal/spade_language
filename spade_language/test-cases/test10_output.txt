@@ -1,0 +1,17 @@
+3                               0x00                            SPADE_KEYWORD                           sow
+3                               0x80                            IDENTIFIER                              input
+3                               0x80                            IDENTIFIER                              as
+3                               0x21                            SPADE_KEYWORD                           c∞
+5                               0x14                            SPADE_KEYWORD                           engrave
+5                               0x83                            STRING_CONSTANT                         I am the magic Ouija Board!\n Ask me any question.        
+5                               0x15                            SPADE_KEYWORD                           on
+5                               0x16                            SPADE_KEYWORD                           stdout
+6                               0x80                            IDENTIFIER                              input
+6                               0x06                            SPADE_KEYWORD                           is
+6                               0x80                            IDENTIFIER                              gather
+6                               0x08                            SPADE_KEYWORD                           from
+6                               0x80                            IDENTIFIER                              stdin
+8                               0x14                            SPADE_KEYWORD                           engrave
+8                               0x83                            STRING_CONSTANT                         I am a disco dancer!
+8                               0x15                            SPADE_KEYWORD                           on
+8                               0x16                            SPADE_KEYWORD                           stdout
