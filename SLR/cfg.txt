@@ -1,0 +1,124 @@
+START -> S'
+S' -> S NL S'
+S' -> ''
+
+S -> ID with ( ARGS ) NL S' plant
+
+ARGS -> ARG
+ARGS -> ARG , ARGS
+ARGS -> ''
+
+ARG -> DTYPE ID
+ARG -> DTYPE # ID
+
+S -> FUNCALL
+
+FUNCALL -> reap ID with ( VARS )
+
+VARS -> EXPR
+VARS -> EXPR , VARS
+VARS -> ''
+
+S -> here lies ID NL __________ NL | NL SS |__________
+
+SS -> | S NL SS
+SS -> ''
+
+S -> IFPAIR
+
+IFPAIR -> IFCASE rotten IFPAIR
+IFPAIR -> IFCASE rotten NL S’ dispose
+IFPAIR -> IFCASE NL dispose
+
+IFCASE -> EXPR fresh? NL S’
+
+S -> kill
+S -> skip
+
+S -> supply EXPR
+
+S -> sow ASIZE ID of DTYPE
+
+ASIZE -> NUM
+ASIZE -> '' 
+
+S -> EXPR is EXPR
+
+S -> harvest INIT_COND FINAL_COND STEP BLKARROW NL S’ sell
+
+INIT_COND -> ''
+INIT_COND -> from EXPR is EXPR
+FINAL_COND -> eternally
+FINAL_COND -> until EXPR
+STEP -> ''
+STEP -> every EXPR EXPR
+
+S -> engrave EXPR
+S -> engrave EXPR on FHANDLE
+
+FHANDLE -> stdout
+FHANDLE -> stderr
+FHANDLE -> ID
+
+S -> EXPR is gather from stdin
+S -> EXPR is gather from EXPR
+
+S -> EXPR is unearth ID LARROW MODE
+LARROW -> larr
+MODE -> rwb
+
+S -> bury EXPR
+
+DTYPE -> i64
+DTYPE -> u64
+DTYPE -> f64
+DTYPE -> i32
+DTYPE -> u32
+DTYPE -> f32
+DTYPE -> b8
+DTYPE -> b1
+DTYPE -> c32
+DTYPE -> c64
+DTYPE -> file
+
+EXPR -> UOP EXPR
+EXPR -> [ EXPR ]
+EXPR -> [ EXPR ] BOP EXPR
+EXPR -> ID
+EXPR -> ID BOP EXPR
+EXPR -> NUM
+EXPR -> NUM BOP EXPR
+EXPR -> STR
+EXPR -> STR BOP EXPR
+EXPR -> FUNCALL
+EXPR -> FUNCALL BOP EXPR
+
+UOP -> !
+UOP -> ~
+
+BOP -> +
+BOP -> -
+BOP -> *
+BOP -> div
+BOP -> /
+BOP -> &
+BOP -> |
+BOP -> ^
+BOP -> =
+BOP -> #
+BOP -> >
+BOP -> <
+BOP -> arrow
+BOP -> ge
+BOP -> le
+BOP -> ne
+BOP -> %
+BOP -> &&
+BOP -> ||
+BOP -> sqrt
+
+NUM -> num
+STR -> str
+BLKARROW -> end
+ID -> id
+NL -> nl
