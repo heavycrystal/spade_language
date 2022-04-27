@@ -4,10 +4,10 @@ import sys
 import re
 
 # operators in the SPADE language, no identifier can contain these characters. This also includes superscript numbers, as we shall see in our regex
-spade_operators = [ "+", "-", "×", "÷", "/", "&", "|", "^", "√", "=", "!", "~", "#", ">", "<", "[", "]", "←", "→", "⚠", "≥", "≤", "≠", "%", ",", "&&", "||" ]
+spade_operators = [ "+", "-", "×", "÷", "/", "&", "|", "^", "√", "=", "!", "~", "#", ">", "<", "[", "]", "←", "→", "≥", "≤", "≠", "%", ",", "&&", "||"]
 
 # keywords in the SPADE language, no identifier can be named these.
-spade_keywords = [ "sow", "with", "reap", "of", "here", "lies", "is", "harvest", "from", "until", "eternally", "every", "⏵" , "⚠", "fresh?", "rotten", "kill", "skip", "supply", "unearth", "bury", "engrave", "on", "stdout", "stderr", "i64", "u64", "f64", "i32", "u32", "f32", "b8", "b1", "c32", "c∞", "file", "❌", "⭕" ]
+spade_keywords = [ "sow", "with", "reap", "plant", "of", "here", "lies", "is", "harvest", "from", "until", "eternally", "every", "⏵", "sell", "⚠", "fresh?", "rotten", "dispose", "kill", "skip", "supply", "unearth", "bury", "engrave", "on", "stdout", "stderr", "i64", "u64", "f64", "i32", "u32", "f32", "b8", "b1", "c32", "c∞", "file", "❌", "⭕", "__________", "|__________", "|"]
 
 # SPADE uses superscript for constant exponents, to parse and convert them to integer constants these are needed.
 # To handle superscript, we consider the superscript digits as operators and parse them as an expression.
@@ -55,6 +55,7 @@ def is_integer_constant(word: str):
         int(word, base = 0)
     except ValueError:
         if len([superscript for superscript in list(word) if superscript in superscript_numbers]) == len(list(word)):
+            print(('\t' * 4).join([str(line_index + 1), print_hex(64 + spade_operators.index('^')), "SPADE_OPERATOR", '^']))
             return True
         return False
     return True
@@ -96,10 +97,11 @@ print("\n\nLINE_NUMBER\t\t\tTOKEN_ID\t\t\tTOKEN_TYPE\t\t\t\tTOKEN CONTENTS")
 # looping over each line.
 for line_index, line in enumerate(input_file_lines):
     # handling struct enclosures as well as empty lines and comments.
-    if len(line) == 0 or "__________" in line or "|__________" in line or line[0][0] == "⚠":
+    if len(line) == 0 or line[0][0] == "⚠":
         continue
     # while in a struct enclosure, the first | is part of the enclosure and not an operator.
     elif line[0] == "|":
+        print(('\t' * 4).join([str(line_index + 1), print_hex(spade_keywords.index('|')), "SPADE_KEYWORD", '|']))
         line = line[1:]
     
     word_index = 0
@@ -136,5 +138,7 @@ for line_index, line in enumerate(input_file_lines):
             # if it's skipped or handled as a string constant, it's handled by print_token.
             print_token(line[word_index], line_index)
         word_index = word_index + 1
+
+    print(('\t'*4).join([str(line_index + 1), print_hex(132), "NEW_LINE", "\\n"]))
 
 
