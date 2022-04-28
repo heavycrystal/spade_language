@@ -1,0 +1,126 @@
+START -> S' 
+S' -> S NL S'
+S' -> ''
+
+S -> ID with ( ARGS ) NL S' plant
+
+ARGS -> ARG
+ARGS -> ARG , ARGS
+ARGS -> ''
+
+ARG -> DTYPE ID {ID.type = DTYPE.type}
+ARG -> DTYPE # ID {ID.type = DTYPE.type}
+
+S -> FUNCALL
+
+FUNCALL -> reap ID with ( VARS )
+
+VARS -> EXPR {VARS.val = EXPR.val; VARS.type = EXPR.type}
+VARS -> EXPR , VARS
+VARS -> ''
+
+S -> here lies ID NL __________ NL | NL SS |__________
+
+SS -> | S NL SS
+SS -> ''
+
+S -> IFPAIR
+
+IFPAIR -> IFCASE rotten IFPAIR
+IFPAIR -> IFCASE rotten NL S' dispose
+IFPAIR -> IFCASE dispose
+
+IFCASE -> EXPR fresh? NL S'
+
+S -> kill
+S -> skip
+
+S -> supply EXPR
+
+S -> sow ASIZE ID of DTYPE {ID.type = DTYPE.type; ID.size = ASIZE.val}
+
+ASIZE -> NUM {ASIZE.val = NUM.val}
+ASIZE -> '' 
+
+S -> EXPR is EXPR
+
+S -> harvest INIT_COND FINAL_COND STEP BLKARROW NL S' sell
+
+INIT_COND -> ''
+INIT_COND -> from EXPR is EXPR
+FINAL_COND -> eternally
+FINAL_COND -> until EXPR
+STEP -> ''
+STEP -> every EXPR EXPR
+
+S -> engrave EXPR
+S -> engrave EXPR on FHANDLE
+
+FHANDLE -> stdout
+FHANDLE -> stderr
+FHANDLE -> ID
+
+S -> EXPR is gather from stdin
+S -> EXPR is gather from EXPR
+
+S -> EXPR is unearth ID LARROW MODE
+LARROW -> larr
+MODE -> rwb
+
+S -> bury EXPR
+
+DTYPE -> i64 {DTYPE.type = "i64"} 
+DTYPE -> u64 {DTYPE.type = "u64"}
+DTYPE -> f64 {DTYPE.type = "f64"}
+DTYPE -> i32 {DTYPE.type = "i32"}
+DTYPE -> u32 {DTYPE.type = "u32"}
+DTYPE -> f32 {DTYPE.type = "f32"}
+DTYPE -> b8 {DTYPE.type = "b8"}
+DTYPE -> b1 {DTYPE.type = "b1"}
+DTYPE -> c32 {DTYPE.type = "c32"}
+DTYPE -> c64 {DTYPE.type = "c64"}
+DTYPE -> file {DTYPE.type = "file"}
+
+
+EXPR -> UOP EXPR {if UOP.type = ”!” then EXPR.val = !EXPR1.val else EXPR.val = ~EXPR1.val; EXPR.type = EXPR1.type}
+EXPR -> [ EXPR ] {EXPR.val = EXPR1.val, EXPR.type = EXPR1.type}
+EXPR -> [ EXPR ] BOP EXPR {EXPR.val = EXPR1.val BOP.type EXPR2.val, EXPR.type = EXPR1.type}
+EXPR -> ID {EXPR.val = ID.val, EXPR.type =ID.type}
+EXPR -> ID BOP EXPR {EXPR.val = ID.val BOP.type EXPR.val, EXPR.type = ID.type}
+EXPR -> NUM {EXPR.val = NUM.val, EXPR.type = “NUM”}
+EXPR -> NUM BOP EXPR {EXPR.val = NUM.val BOP.type EXPR.val, EXPR.type = “NUM”}
+EXPR -> STR {EXPR.val = STR.val, EXPR.type = “STR”}
+EXPR -> STR BOP EXPR {EXPR.val = STR.val BOP.type EXPR.val, EXPR.type = “STR”}
+EXPR -> FUNCALL
+EXPR -> FUNCALL BOP EXPR 
+
+UOP -> ! { BOP.type = “!” }
+UOP -> ~ { BOP.type = “~” }
+
+BOP -> + { BOP.type = “+” }
+BOP -> - { BOP.type = “-” }
+BOP -> * { BOP.type = “*” }
+BOP -> div { BOP.type = “div” }
+BOP -> / { BOP.type = “/” }
+BOP -> & { BOP.type = “&” }
+BOP -> | { BOP.type = “|” }
+BOP -> ^ { BOP.type = “^” }
+BOP -> = { BOP.type = “=” }
+BOP -> # { BOP.type = “#” }
+BOP -> > { BOP.type = “>” }
+BOP -> < { BOP.type = “<” }
+BOP -> arrow { BOP.type = “arrow” }
+BOP -> ge { BOP.type = “ge” }
+BOP -> le { BOP.type = “le” }
+BOP -> ne { BOP.type = “ne” }
+BOP -> % { BOP.type = “%” }
+BOP -> && { BOP.type = “&&” }
+BOP -> || { BOP.type = “||” }
+BOP -> sqrt  { BOP.type = “sqrt” }
+
+NUM -> num {NUM.val = num, NUM.type = “NUM”}
+STR -> str {STR.val = str, STR.type = “STR”}
+BLKARROW -> end
+ID -> id {ID.name = id, ID.type = id.type}
+NL -> nl 
+NL -> nl NL 

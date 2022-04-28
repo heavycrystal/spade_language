@@ -1,4 +1,4 @@
-START -> S'
+START -> S' 
 S' -> S NL S'
 S' -> ''
 
@@ -27,10 +27,10 @@ SS -> ''
 S -> IFPAIR
 
 IFPAIR -> IFCASE rotten IFPAIR
-IFPAIR -> IFCASE rotten NL S’ dispose
-IFPAIR -> IFCASE NL dispose
+IFPAIR -> IFCASE rotten NL S' dispose
+IFPAIR -> IFCASE dispose
 
-IFCASE -> EXPR fresh? NL S’
+IFCASE -> EXPR fresh? NL S'
 
 S -> kill
 S -> skip
@@ -44,7 +44,7 @@ ASIZE -> ''
 
 S -> EXPR is EXPR
 
-S -> harvest INIT_COND FINAL_COND STEP BLKARROW NL S’ sell
+S -> harvest INIT_COND FINAL_COND STEP BLKARROW NL S' sell
 
 INIT_COND -> ''
 INIT_COND -> from EXPR is EXPR
@@ -80,6 +80,7 @@ DTYPE -> b1
 DTYPE -> c32
 DTYPE -> c64
 DTYPE -> file
+DTYPE -> ID
 
 EXPR -> UOP EXPR
 EXPR -> [ EXPR ]
@@ -122,3 +123,4 @@ STR -> str
 BLKARROW -> end
 ID -> id
 NL -> nl
+NL -> nl NL

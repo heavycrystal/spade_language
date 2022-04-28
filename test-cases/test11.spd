@@ -1,0 +1,6 @@
+numbers#j > numbers#next fresh?
+    sow temp of rotten
+    temp sis numbers#j
+    numbers#j isg numbers#next
+    numbers#next is temp
+dispose

@@ -1,0 +1,46 @@
+expr0 := apple = banana
+expr0 == ❌ ? goto L1
+expr1 := a + b
+expr2 := c ^ 45
+expr3 := expr1 - expr2
+goto end1
+L1:
+expr4 := a = b
+expr4 == ❌ ? goto L2
+expr5 := a - b
+goto end1
+L2:
+expr6 := c = d
+expr6 == ❌ ? goto L3
+expr7 := c + d
+goto end1
+L3:
+expr8 := c = a
+expr8 == ❌ ? goto L4
+expr9 := c + a
+goto end1
+L4:
+end1:
+expr10 := a = x
+expr10 == ❌ ? goto L5
+expr11 := notchad + bad
+goto end2
+L5:
+expr12 := 69 - 420
+expr13 := kevinboi + expr12
+end2:
+expr14 := cow = sad
+expr14 == ❌ ? goto L6
+expr15 := unhappy + vraj
+goto end3
+L6:
+expr16 := cow = happy
+expr16 == ❌ ? goto L7
+expr17 := 0 - af
+expr18 := based + expr17
+goto end3
+L7:
+expr19 := you_fell_off + touch_grass
+expr20 := ratio + expr19
+expr21 := L + expr20
+end3:

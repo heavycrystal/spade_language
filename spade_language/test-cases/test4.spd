@@ -1,9 +1,0 @@
-⚠ Arrays and Input
-
-sow 12 apples of c∞
-
-harvest from day is 1 until day = 12 every 1 day
-    gather apples#day from stdin
-
-harvest from day is 1 until day = 12 every 1 day
-    engrave apples#day to stdout

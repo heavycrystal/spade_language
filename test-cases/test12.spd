@@ -1,0 +1,34 @@
+sow apple of i64
+sow banana of i64
+sow cow of f32
+sow a of f32
+sow b of f32
+sow c of f32
+
+apple is 1
+banana is 2
+a is 2
+
+apple = banana fresh?
+    cow is [a+b]-[c⁴⁵]
+rotten a = b fresh?
+    cow is a-b
+rotten c = d fresh?
+    cow is c+d
+rotten c = a fresh?
+    cow is c+a
+dispose
+
+a = x fresh?
+    chad is notchad+bad
+rotten
+    chad is kevinboi+69-420
+dispose
+
+cow = sad fresh?
+    cow is unhappy+vraj
+rotten cow = happy fresh?
+    cow is based+                                                0-af
+rotten
+    kevin is L+ratio+you_fell_off+touch_grass
+dispose 
